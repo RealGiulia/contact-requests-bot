@@ -37,7 +37,7 @@ class GPT:
             pattern = r'\*\*(.*?)\*\*'
             message =  completion.choices[0].message.content
             matches = re.findall(pattern, message)
-            response = {"status": "OK", "message": matches}
+            response = {"status": "OK", "message": matches[0]}
 
         except Exception as error: 
             print(error)
