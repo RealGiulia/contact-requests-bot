@@ -87,9 +87,7 @@ def main():
     login_salesforce(bot, username, password)
 
     # Extraindo informações:
-
     tabela_casos =  bot.find_element(".slds-table > tbody:nth-child(3)",By.CSS_SELECTOR)
-
     casos = tabela_casos.find_elements(By.TAG_NAME,"tr")
     processados = 0
     erros = 0
@@ -167,7 +165,7 @@ def main():
         maestro.finish_task(
             task_id=execution.task_id,
             status=AutomationTaskFinishStatus.SUCCESS,
-            message="Bot Finalizado OK.",
+            message="Bot Finalizado com sucesso.",
             total_items=total,
             processed_items=processados,
             failed_items=erros
@@ -183,7 +181,7 @@ def main():
         maestro.alert(
             task_id=execution.task_id,
             title="SalesBot [FINALIZADO COM ERROS]",
-            message="O bot foi finalizado com {erros}.",
+            message=f"O bot foi finalizado com {erros}.",
             alert_type=AlertType.ERROR
             
         )
@@ -201,23 +199,19 @@ def main():
         maestro.alert(
             task_id=execution.task_id,
             title="SalesBot [FINALIZADO PARCIALMENTE COM SUCESSO]",
-            message="O bot foi finalizado com {erros} itens com erro e {processados} itens processados com sucesso.",
+            message=f"O bot foi finalizado com {erros} itens com erro e {processados} itens processados com sucesso.",
             alert_type=AlertType.INFO
         )
 
         maestro.finish_task(
             task_id=execution.task_id,
             status=AutomationTaskFinishStatus.PARTIALLY_COMPLETED,
-            message="Bot Finalizado OK.",
+            message="Bot parcialmente finalizado.",
             total_items=total,
             processed_items=processados,
             failed_items=erros
         )
     
-
-def not_found(label):
-    print(f"Element not found: {label}")
-
 
 def login_salesforce(bot, username, password):
     try:

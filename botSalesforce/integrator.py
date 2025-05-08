@@ -26,10 +26,10 @@ class GPT:
             completion = self.client.chat.completions.create(
                 model="gpt-4o-mini",
                 messages=[
-                    {"role": "system", "content": "Voc~e é um assitente muito prestativo."},
+                    {"role": "system", "content": "Você é um assistente muito prestativo que faz a classificação de chamados, dividindo-os em áreas dentro de uma empresa."},
                     {
                         "role": "user",
-                        "content": f"Olá chat, por favor: a Empresa electrohub é uma empresa de eletronicos. {description}. {message}. Escreva a área entre dois asteriscos, por favor"
+                        "content": f"A Empresa electrohub é uma empresa de eletronicos. {description}. {message}. Escreva a área entre dois asteriscos, por favor"
                     }
                 ]
             )
