@@ -27,9 +27,7 @@ from botcity.web import WebBot, Browser, By
 
 # Import for integration with BotCity Maestro SDK
 from botcity.maestro import *
-from dotenv import load_dotenv
 from integrator import GPT
-import os
 
 # Disable errors if we are not connected to Maestro
 BotMaestroSDK.RAISE_NOT_CONNECTED = False
@@ -37,22 +35,8 @@ maestro = BotMaestroSDK.from_sys_args()
 execution = maestro.get_execution()
 
 def main():
-    # Runner passes the server url, the id of the task being executed,
-    # the access token and the parameters that this task receives (when applicable).
-    ## Fetch the BotExecution with details from the task, including parameters
 
-    load_dotenv()
-    login = os.environ.get('LOGIN')
-    key = os.environ.get('KEY')
-    server = os.environ.get('SERVER')
-
-    maestro.login(
-    server=server, 
-    login=login, 
-    key=key)
-
-    execution.task_id = 7227581
-
+    # Starting execution
     maestro.alert(
         task_id=execution.task_id,
         title="SalesBot - Alerta de Início",
